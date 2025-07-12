@@ -1,5 +1,4 @@
 let pyodide;
-window.pyodide = pyodide; // for browser console usage
 
 async function loadPyodideAndPackages() {
   pyodide = await loadPyodide(); // loads full Python runtime
@@ -16,6 +15,8 @@ async function loadPyodideAndPackages() {
     zipfile.ZipFile("/tmp/bundle.zip").extractall()
     sys.path.insert(0, "/tmp/dep")
   `);
+
+  window.pyodide = pyodide; // for browser console usage
 }
 
 async function runPython() {
