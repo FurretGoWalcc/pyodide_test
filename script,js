@@ -6,15 +6,14 @@ async function loadPyodideAndPackages() {
 }
 
 async function runPython() {
-  await pyodide.runPythonAsync(`
+  let output = await pyodide.runPythonAsync(`
     from io import StringIO
     import sys
     sys.stdout = StringIO()
     print("hello world")
-    result = sys.stdout.getvalue()
+    sys.stdout.getvalue()
   `);
 
-  const output = pyodide.globals.get("result");
   document.getElementById("output").textContent = output;
 }
 
