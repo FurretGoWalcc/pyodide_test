@@ -3,6 +3,7 @@ let pyodide;
 async function loadPyodideAndPackages() {
   pyodide = await loadPyodide(); // loads full Python runtime
   console.log("Pyodide loaded");
+  document.getElementById("run-btn").addEventListener("click", runPython);
 }
 
 async function runPython() {
