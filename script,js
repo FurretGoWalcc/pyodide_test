@@ -1,0 +1,23 @@
+let pyodide = await loadPyodide();
+
+document.getElementById("run-button").addEventListener("click", async () => {
+  const fileInput = document.getElementById("file-input");
+  const output = document.getElementById("output");
+
+  if (fileInput.files.length === 0) {
+    output.textContent = "Please select a file.";
+    return;
+  }
+
+  const file = fileInput.files[0];
+  const text = await file.text();
+
+  // Load your Python tool
+  const toolCode = await (await fetch("tool.py")).text();
+  await pyodide.runPythonAsync(toolCode);
+
+  // Pass the file content to your Python function
+  pyodide.globals.set("input_text", text);
+  const result = await pyodide.runPythonAsync("process(input_text)");
+  output.textContent = result;
+});
