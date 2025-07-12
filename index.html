@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>My Python Tool (Pyodide)</title>
+  <meta charset="UTF-8" />
+  <title>Pyodide Hello World</title>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
 </head>
 <body>
-  <h1>Python Tool in Browser</h1>
-
-  <input type="file" id="file-input" />
-  <button id="run-button">Run Tool</button>
+  <h1>Pyodide Hello World</h1>
+  <button onclick="runPython()">Run Python</button>
   <pre id="output"></pre>
 
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
   <script type="module" src="script.js"></script>
 </body>
 </html>
