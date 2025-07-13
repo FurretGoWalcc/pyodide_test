@@ -12,8 +12,8 @@ async function loadPyodideAndPackages() {
   pyodide.runPython(`
     import zipfile
     import sys
-    zipfile.ZipFile("/tmp/bundle.zip").extractall()
-    sys.path.insert(0, "/tmp/dep")
+    zipfile.ZipFile("/tmp/bundle.zip").extractall(path="/")
+    sys.path.insert(0, "/dep")
   `);
 
   window.pyodide = pyodide; // for browser console usage
