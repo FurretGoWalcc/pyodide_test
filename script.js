@@ -45,7 +45,7 @@ async function talv() {
 }
 
 function findUACBankFiles(path = "/home/pyodide/out") {
-  const results = [];
+  const banks = [];
 
   const entries = pyodide.FS.readdir(path);
   for (const name of entries) {
@@ -56,23 +56,26 @@ function findUACBankFiles(path = "/home/pyodide/out") {
       const stat = pyodide.FS.stat(fullPath);
 
       if (pyodide.FS.isDir(stat.mode)) {
-        results.push(...findUACBankFiles(fullPath)); // Recurse
+        banks.push(...findUACBankFiles(fullPath)); // Recurse
       } else if (pyodide.FS.isFile(stat.mode)) {
         // Extract player ID from parent directory name
         const segments = fullPath.split("/");
         const playerId = segments.length >= 2 ? segments[segments.length - 3] : "Unknown";
-        results.push({ playerId, path: fullPath, name });
+        const gameID = segments.length >= 3 ? segments[segments.length - 2] : "Unknown";
+        banks.push({ playerId, path: fullPath, name , gameID});
       }
     } catch (e) {
       console.warn("Failed to stat", fullPath, e);
     }
   }
 
-  return results;
+  return banks;
 }
 
 
 function renderUACBankLinks(files) {
+  document.getElementById("gameID").textContent = `gameID: ${files[0].gameID}`;
+  
   const list = document.getElementById("file-list");
   list.innerHTML = "";
 

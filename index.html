@@ -10,20 +10,28 @@
 <body>
   <h1>Starcraft 2 Bank Rebuilder</h1>
   <p>This tool extracts bankfiles from a replay,
-    then serves them up for you to download.</p>
+    then serves them up for you to download</p>
   <p>If you are interested in learning about how the page was made, check out the
     <a href=https://github.com/FurretGoWalcc/s2webbankrebuilder>GitHub Page</a>
   </p>
 
   <h2>Directions</h2>
+  <p>Replays are typically found in Documents/StarCraft II/Accounts/
+    {###}/{playerID}/Replays
+  </p>
   <p>Upload the replay (.sc2replay) for processing</p>
   <input type="file" id="file-input" accept=".sc2replay" />
-  <p>Generated output files will appear here, with
+  <p>Generated output files will appear below, with
     the playerID followed by the name of the bankfile
   </p>
   <pre id="output"></pre>
+  <pre id="gameID"></pre>
   <ul id="file-list"></ul>
-
+  <p>Once you get your bank, you will want to place it in the specific
+    game's folder; Documents/StarCraft II/Accounts/
+    {###}/{playerID}/Banks/{gameID}<br>
+    To help with this, the gameID will be displayed by this tool.
+  </p>
   <script type="module" src="script.js"></script>
 </body>
 
