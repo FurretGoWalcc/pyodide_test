@@ -99,7 +99,7 @@ async function startup() {
 }
 async function runPython() {
   await talv();
-  renderUACBankLinks(findUACBankFiles);
+  renderUACBankLinks(findUACBankFiles());
 }
 
 startup()
