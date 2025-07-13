@@ -84,7 +84,7 @@ function renderUACBankLinks(files) {
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${file.playerId}-UACBANK.SC2Bank`;
+    link.download = `UACBANK.SC2Bank`;
     link.textContent = `${file.playerId}: UACBANK.SC2Bank`;
 
     const li = document.createElement("li");
