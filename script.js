@@ -3,7 +3,6 @@ let pyodide;
 async function initPyodide() {
   pyodide = await loadPyodide(); // loads full Python runtime
   console.log("Pyodide loaded");
-  document.getElementById("run-btn").addEventListener("click", runPython);
   window.pyodide = pyodide; // for browser console usage
 }
 
@@ -96,7 +95,9 @@ function renderUACBankLinks(files) {
 async function startup() {
   await initPyodide();
   await loadPackages();
+  document.getElementById("file-input").addEventListener("change", runPython);
 }
+
 async function runPython() {
   await talv();
   renderUACBankLinks(findUACBankFiles());
