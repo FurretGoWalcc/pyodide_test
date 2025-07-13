@@ -67,7 +67,7 @@ function findUACBankFiles() {
         }
       }
     } catch (e) {
-      console.warn("Failed to stat", fullPath, e);
+      console.warn("Failed to stat", dirPath, e);
     }
   }
   return results;
