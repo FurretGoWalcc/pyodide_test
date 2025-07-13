@@ -93,11 +93,13 @@ function renderUACBankLinks(files) {
   }
 }
 
+async function startup() {
+  await initPyodide();
+  await loadPackages();
+}
 async function runPython() {
   await talv();
   renderUACBankLinks(findUACBankFiles);
 }
 
-// Load Pyodide on page load
-initPyodide();
-loadPackages();
+startup()
