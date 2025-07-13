@@ -61,7 +61,7 @@ function findUACBankFiles(path = "/home/pyodide/out") {
       } else if (pyodide.FS.isFile(stat.mode) && name === "UACBANK.SC2Bank") {
         // Extract player ID from parent directory name
         const segments = fullPath.split("/");
-        const playerId = segments.length >= 2 ? segments[segments.length - 2] : "Unknown";
+        const playerId = segments.length >= 2 ? segments[segments.length - 3] : "Unknown";
         results.push({ playerId, path: fullPath });
       }
     } catch (e) {
