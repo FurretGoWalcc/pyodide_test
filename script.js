@@ -57,11 +57,11 @@ function findUACBankFiles(path = "/home/pyodide/out") {
 
       if (pyodide.FS.isDir(stat.mode)) {
         results.push(...findUACBankFiles(fullPath)); // Recurse
-      } else if (pyodide.FS.isFile(stat.mode) && name === "UACBANK.SC2Bank") {
+      } else if (pyodide.FS.isFile(stat.mode)) {
         // Extract player ID from parent directory name
         const segments = fullPath.split("/");
         const playerId = segments.length >= 2 ? segments[segments.length - 3] : "Unknown";
-        results.push({ playerId, path: fullPath });
+        results.push({ playerId, path: fullPath, name });
       }
     } catch (e) {
       console.warn("Failed to stat", fullPath, e);
@@ -83,8 +83,8 @@ function renderUACBankLinks(files) {
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = `UACBANK.SC2Bank`;
-    link.textContent = `${file.playerId}: UACBANK.SC2Bank`;
+    link.download = file.name;
+    link.textContent = `${file.playerId}: ${file.name}`;
 
     const li = document.createElement("li");
     li.appendChild(link);
